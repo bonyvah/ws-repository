@@ -13,13 +13,13 @@ class SQLiteRepository:
                          )
             """)
     
-    def save(self, user: dict)->None:
+    def save(self, data: dict)->None:
         try:
             with sqlite3.connect(self.db_path) as conn:
                 conn.execute("""
                     INSERT INTO users (name,email,age)
                     VALUES (?,?,?)
-            """, (user["name"], user["email"], user["age"]))
+            """, (data["name"], data["email"], data["age"]))
         except sqlite3.IntegrityError:
             raise ValueError("duplicate email")
     

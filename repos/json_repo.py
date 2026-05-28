@@ -12,10 +12,10 @@ class JsonRepository:
         except FileNotFoundError:
             return {}
     
-    def save(self, user:dict) -> None:
-        if user['email'] in self.all_data:
+    def save(self, data:dict) -> None:
+        if data['email'] in self.all_data:
             raise ValueError("duplicate email")
-        self.all_data[user['email']] = user
+        self.all_data[data['email']] = data
         with open(self.file_path, 'w') as f:
             json.dump(self.all_data, f)
 
