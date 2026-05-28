@@ -19,8 +19,8 @@ class JsonRepository:
         with open(self.file_path, 'w') as f:
             json.dump(self.all_data, f)
 
-    def find_by_email(self, email : str) -> dict:
+    def find_by_email(self, email : str) -> dict | None:
         data = self.all_data.get(email)
         if data:
             return data
-        return {}
+        return None

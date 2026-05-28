@@ -8,5 +8,5 @@ class InMemoryRepository:
             raise ValueError("duplicate email")
         self.users[data['email']] = data
 
-    def find_by_email(self, email: str) -> dict:
-        return self.users.get(email, {})
+    def find_by_email(self, email: str) -> dict | None:
+        return self.users.get(email, None)

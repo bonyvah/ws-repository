@@ -23,7 +23,7 @@ class SQLiteRepository:
         except sqlite3.IntegrityError:
             raise ValueError("duplicate email")
     
-    def find_by_email(self, email:str)->dict:
+    def find_by_email(self, email:str)->dict|None:
         with sqlite3.connect(self.db_path) as conn:
             curr = conn.execute("""
                 SELECT * FROM users
@@ -31,7 +31,7 @@ class SQLiteRepository:
             """, (email,))
             row = curr.fetchone()
 
-        if not row: return {}
+        if not row: return None
         
         email, name, age = row
 
